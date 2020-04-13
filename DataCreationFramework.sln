@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCreationFramework", "Sources\DataCreationFramework.csproj", "{3A4A28DA-F5E4-4755-A47B-C3518BF4577D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCreationFramework.Tests", "DataCreationFramework.Tests\DataCreationFramework.Tests.csproj", "{AA3E4C42-6BD1-4922-A7BC-98F25C4FDB1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A4A28DA-F5E4-4755-A47B-C3518BF4577D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4A28DA-F5E4-4755-A47B-C3518BF4577D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4A28DA-F5E4-4755-A47B-C3518BF4577D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4A28DA-F5E4-4755-A47B-C3518BF4577D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3E4C42-6BD1-4922-A7BC-98F25C4FDB1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3E4C42-6BD1-4922-A7BC-98F25C4FDB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3E4C42-6BD1-4922-A7BC-98F25C4FDB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3E4C42-6BD1-4922-A7BC-98F25C4FDB1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
