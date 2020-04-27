@@ -9,36 +9,35 @@ namespace DataCreationFramework.Tests
     public class DataValidationInteger
     {
         [Test]
-        public void CreateMaxValidation()
+        public void CreateForMaxValue()
         {
-            var validation = new DefinitionOfValid<PrimaryType>();
+            var validation = new DefinitionOfValid<Person>();
 
-            validation.Add(p => p.AnIntegerValue)
-                .Min(50)
-                .Max(100);
+            validation.Add(p => p.Age)
+                .Min(10)
+                .Max(120);
 
-            var strategy = validation.CreateViolation(nameof(PrimaryType.AnIntegerValue), ViolationType.MaximumValue);
+            var strategy = validation.CreateViolation(nameof(Person.Age), ViolationType.MaximumValue);
 
             var item = Common.CreateItem(strategy);
 
-            Assert.IsTrue(item.AnIntegerValue > 100);
-
+            Assert.IsTrue(item.Age > 100);
         }
 
         [Test]
         public void CreateMaxValidationByExpression()
         {
-            var validation = new DefinitionOfValid<PrimaryType>();
+            var validation = new DefinitionOfValid<Person>();
 
-            validation.Add(p => p.AnIntegerValue)
-                .Min(50)
-                .Max(100);
+            validation.Add(p => p.Age)
+                .Min(10)
+                .Max(120);
 
-            var strategy = validation.CreateViolation(p => p.AnIntegerValue, ViolationType.MaximumValue);
+            var strategy = validation.CreateViolation(p => p.Age, ViolationType.MaximumValue);
 
             var items = Common.CreateItems(100, strategy);
 
-            Assert.IsTrue(items.All(p => p.AnIntegerValue < 50 || p.AnIntegerValue > 100));
+            Assert.IsTrue(items.All(p => p.Age < 10 || p.Age > 120));
         }
 
         [Test]

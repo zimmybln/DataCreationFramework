@@ -9,56 +9,56 @@ namespace DataCreationFramework.Tests
     public class DataValidationString
     {
         [Test]
-        public void CreateOnNullValue()
+        public void CreateForNullValue()
         {
-            var validation = new DefinitionOfValid<PrimaryType>();
+            var validation = new DefinitionOfValid<Person>();
 
-            validation.Add(p => p.AnStringValue)
+            validation.Add(p => p.FirstName)
                 .NotNull()
                 .MaxLength(150)
-                .MinLength(10);
+                .MinLength(5);
 
-            var strategy = validation.CreateViolation(p => p.AnStringValue, ViolationType.Presence);
+            var strategy = validation.CreateViolation(p => p.FirstName, ViolationType.Presence);
 
             var item = Common.CreateItem(strategy);
 
-            Assert.IsTrue(String.IsNullOrEmpty(item.AnStringValue));
+            Assert.IsTrue(String.IsNullOrEmpty(item.FirstName));
 
         }
 
         [Test]
-        public void CreateOnMaxValue()
+        public void CreateForMaxValue()
         {
-            var validation = new DefinitionOfValid<PrimaryType>();
+            var validation = new DefinitionOfValid<Person>();
 
-            validation.Add(p => p.AnStringValue)
+            validation.Add(p => p.FirstName)
                 .NotNull()
                 .MaxLength(150)
                 .MinLength(10);
 
-            var strategy = validation.CreateViolation(p => p.AnStringValue, ViolationType.MaximumLength);
+            var strategy = validation.CreateViolation(p => p.FirstName, ViolationType.MaximumLength);
 
             var item = Common.CreateItem(strategy);
 
-            Assert.IsTrue(item.AnStringValue.Length > 150);
+            Assert.IsTrue(item.FirstName.Length > 150);
 
         }
 
         [Test]
-        public void CreateOnMinValue()
+        public void CreateForMinValue()
         {
-            var validation = new DefinitionOfValid<PrimaryType>();
+            var validation = new DefinitionOfValid<Person>();
 
-            validation.Add(p => p.AnStringValue)
+            validation.Add(p => p.FirstName)
                 .NotNull()
                 .MaxLength(150)
                 .MinLength(10);
 
-            var strategy = validation.CreateViolation(p => p.AnStringValue, ViolationType.MinimumLength);
+            var strategy = validation.CreateViolation(p => p.FirstName, ViolationType.MinimumLength);
 
             var item = Common.CreateItem(strategy);
 
-            Assert.IsTrue(item.AnStringValue.Length < 10);
+            Assert.IsTrue(item.FirstName.Length < 10);
 
         }
 

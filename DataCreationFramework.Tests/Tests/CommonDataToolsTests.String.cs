@@ -20,7 +20,7 @@ namespace DataCreationFramework.Tests
 
             var items = Common.CreateItems(10, strategy).ToList();
 
-            Assert.IsTrue(items.Any(i => i.FirstName.Length == 153));
+            Assert.IsTrue(items.All(i => i.FirstName.Length == 153));
         }
 
         [Test]
@@ -37,6 +37,23 @@ namespace DataCreationFramework.Tests
             Assert.IsTrue(items.All(i => template.Contains(i.FirstName)));
 
             template.ToList().ForEach(name => Assert.IsTrue(items.Any(i => i.FirstName.Equals(name))));
+        }
+
+        [Test]
+        public void CreateItemsWithOneOfTheseChars()
+        {
+            var strategy = new DataCreationStrategy<Person>();
+
+            var requestedChars = new[] { '%', (char)34, (char)32};
+
+            strategy.Add(p => p.LastName, new StringStrategy())
+                .Length(20)
+                .HasOneOfTheseChars(requestedChars);
+
+            var items = Common.CreateItems(100, strategy).ToList();
+
+            Assert.IsTrue(items.All(p => p.LastName.Length == 20));
+            Assert.IsTrue(items.All(p => p.LastName.IndexOfAny(requestedChars) >= 0));
         }
 
 
@@ -67,7 +84,9 @@ namespace DataCreationFramework.Tests
         {
             var strategy = new DataCreationStrategy<Person>();
 
-            strategy.Add(p => p.FirstName, new StringStrategy()).Length(2).OneOfTheseValues("John", "Paul", "George", "Ringo");
+            strategy.Add(p => p.FirstName, new StringStrategy())
+                .Length(2)
+                .OneOfTheseValues("John", "Paul", "George", "Ringo");
 
             var items = Common.CreateItems(10, strategy).ToList();
 

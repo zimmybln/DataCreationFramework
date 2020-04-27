@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DataCreationFramework.Data
 {
@@ -10,6 +11,7 @@ namespace DataCreationFramework.Data
         private int _maxLength = 0;
         private string _prefix = null;
         private string _suffix = null;
+        private Char[] _hasChars = null;
         private List<string> _availableValues = new List<string>();
         private string _value = null;
         private bool _isValueUsed = false;
@@ -29,6 +31,12 @@ namespace DataCreationFramework.Data
         public StringStrategy Suffix(string value)
         {
             _suffix = value;
+            return this;
+        }
+
+        public StringStrategy HasOneOfTheseChars(Char[] chars)
+        {
+            _hasChars = chars;
             return this;
         }
 
@@ -68,6 +76,21 @@ namespace DataCreationFramework.Data
                 }
 
                 value += _suffix;
+            }
+
+            if (_hasChars != null)
+            {
+                int charindex = _random.Next(_hasChars.GetLowerBound(0), _hasChars.GetUpperBound(0) + 1);
+
+                char positionvalue = _hasChars[charindex];
+
+                int valueindex = _random.Next(0, value.Length - 1);
+
+                var tempValue = new StringBuilder(value);
+
+                tempValue[valueindex] = positionvalue;
+
+                value = tempValue.ToString();
             }
 
             return value;
