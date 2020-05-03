@@ -16,7 +16,9 @@ namespace DataCreationFramework.Tests
         {
             var strategy = new DataCreationStrategy<Person>();
 
-            strategy.Add(p => p.FirstName, new StringStrategy()).Length(153);
+            strategy.Add(p => p.FirstName, new StringStrategy())
+               
+                .Length(153);
 
             var items = Common.CreateItems(10, strategy).ToList();
 
@@ -44,7 +46,7 @@ namespace DataCreationFramework.Tests
         {
             var strategy = new DataCreationStrategy<Person>();
 
-            var requestedChars = new[] { '%', (char)34, (char)32};
+            var requestedChars = new[] { '%', (char)34, (char)32, '{', '}'};
 
             strategy.Add(p => p.LastName, new StringStrategy())
                 .Length(20)
